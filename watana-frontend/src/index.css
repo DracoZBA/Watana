@@ -1,0 +1,173 @@
+/* src/index.css */
+
+/* Opcional: Fuente Inter (si deseas una fuente específica) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+html, body {
+    box-sizing: border-box; /* Asegura un modelo de caja consistente */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Reglas explícitas para el contenedor del mapa de Leaflet */
+/* Esto ayuda a asegurar que el mapa se renderice correctamente en entornos React/Bootstrap */
+.leaflet-container {
+    /* Asegura que el contenedor del mapa tenga siempre una altura definida. */
+    /* La altura se puede ajustar en el componente, pero esto actúa como un respaldo. */
+    height: 100%; /* El 100% aquí se refiere al 600px del padre (card-body) */
+    width: 100%;
+    /* Asegura que el contenido del mapa no se desborde */
+    overflow: hidden;
+    /* Algunos navegadores pueden tener problemas de renderizado si no hay un fondo inicial */
+    background-color: #f8f9fa; /* Un color de fondo claro por defecto */
+    border-radius: 0.5rem; /* Pequeño redondeado de bordes para que coincida con Bootstrap */
+}
+
+/* Colores personalizados de Watana (consolidados en :root) */
+:root {
+    --watana-primary-light: #52B788; /* Verde claro de la planta */
+    --watana-primary-dark: #2D6A4F;  /* Verde oscuro de la planta */
+    --watana-secondary: #1B4332;    /* Verde muy oscuro para elementos principales como el navbar */
+    --watana-tertiary: #A7C957;     /* Tono de verde/lima para acentos */
+    --watana-accent-blue: #4A90E2;  /* Un azul para contrastar */
+    --watana-dark: #212529;         /* Gris oscuro casi negro */
+    --watana-light: #F8F9FA;        /* Blanco grisáceo muy claro */
+    --watana-text-dark: #343A40;    /* Color de texto oscuro */
+    --watana-text-secondary: #6C757D; /* Color de texto secundario */
+}
+
+/* Clases de utilidad para la paleta de colores */
+.bg-watana-primary-light { background-color: var(--watana-primary-light) !important; }
+.bg-watana-primary-dark { background-color: var(--watana-primary-dark) !important; }
+.bg-watana-secondary { background-color: var(--watana-secondary) !important; }
+.bg-watana-tertiary { background-color: var(--watana-tertiary) !important; }
+.bg-watana-dark { background-color: var(--watana-dark) !important; }
+.bg-watana-light { background-color: var(--watana-light) !important; }
+
+.text-watana-primary { color: var(--watana-primary-dark) !important; }
+.text-watana-secondary { color: var(--watana-secondary) !important; }
+.text-watana-secondary-text { color: var(--watana-text-secondary) !important; }
+
+
+/* Clases para botones */
+.watana-button-primary {
+    background-color: var(--watana-primary-dark);
+    border-color: var(--watana-primary-dark);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.watana-button-primary:hover {
+    background-color: var(--watana-primary-light);
+    border-color: var(--watana-primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.watana-button-secondary {
+    background-color: transparent;
+    border-color: #fff;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.watana-button-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Estilos para el texto con sombra en la sección hero */
+.text-shadow-md {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.text-shadow-lg {
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+}
+
+
+/* Estilos específicos para las tarjetas de características */
+.watana-feature-card {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Asegurar que ningún pseudo-elemento tenga bordes/sombras no deseadas */
+.watana-feature-card::before,
+.watana-feature-card::after {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    content: '';
+}
+
+.watana-feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra solo en hover */
+}
+
+.watana-card-background {
+    /* Ocupa el 100% del ancho de la tarjeta */
+    width: 100%;
+    /* AUMENTADO: min-height a 600px (1.5x de 400px) */
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+    /* Aseguramos que no haya padding interno que pueda revelar un fondo si la imagen no lo cubre */
+    padding: 0 !important;
+    background-color: var(--watana-primary-dark); /* Fondo de respaldo para la imagen */
+}
+
+/* Clases para las capas de imagen de fondo */
+.image-overlay-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease-in-out; /* Transición suave para el efecto de desvanecimiento */
+    filter: brightness(0.6); /* Oscurece la imagen para que el texto sea legible */
+}
+
+/* ELIMINADO: watana-card-content y sus estilos */
+/* .watana-card-content { ... } */
+/* .watana-card-content .card-title, .watana-card-content .card-text { ... } */
+
+.watana-btn-outline {
+    border-color: var(--watana-primary-light);
+    color: var(--watana-primary-light);
+    transition: all 0.3s ease;
+}
+
+.watana-btn-outline:hover {
+    background-color: var(--watana-primary-light);
+    color: var(--watana-secondary);
+    border-color: var(--watana-primary-light);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* APLICADO: Margen inferior reducido de 8rem a 4rem */
+.mb-watana-xl {
+    margin-bottom: 4rem !important; /* Margen inferior grande para cada tarjeta */
+}
+
+/* La clase .gap-watana-xl ya no es necesaria si usamos mb-watana-xl en las columnas individuales */
+/* .gap-watana-xl {
+    row-gap: 8rem !important;
+    column-gap: 0 !important;
+} */
